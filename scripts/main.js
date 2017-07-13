@@ -17,19 +17,22 @@ function handValue (hand) {
   // const vals = [ 1, 2, 3, 4, 5, 6, 7, 8, 9, "10", "J", "Q", "K", "A" ]
   let total = 0
     for (var i = 0; i < hand.length; i++) {
-      if ( hand[i] === "10" || hand[i] === "J" || hand[i] === "Q" || hand[i] === "K") {
+      if ( (hand[i] === "10") || (hand[i] === "J" )|| (hand[i] === "Q" )|| (hand[i] === "K")) {
         total = total + 10
-      } else if ( hand[i] === "A" && total <= 10 ) {
-        total = total + 11
-      } else if ( hand[i] === "A" && total > 10 ){
-        total = total + 1
       } else if ( hand[i] <= "9" ){
         total = total + parseInt(hand[i])
       }
     }
-    if (total > 21){
-        total = total - 10
+    for (var i = 0; i < hand.length; i++){
+      if ( (hand[i] === "A") && (total <= 10) && (total + 11 <= 21) ) {
+        total = total + 11
+      } else if ( (hand[i] === "A") && (total > 10) && (total + 11 > 21) ){
+        total = total + 1
+      }
     }
+    // if (total > 21){
+    //     total = total - 10
+    // }
   return total;
 }
 
